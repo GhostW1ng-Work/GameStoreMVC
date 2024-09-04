@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Web.GameStoreMVC.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<GameStoreDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreDbConnectionString")));
 
 var app = builder.Build();
 
