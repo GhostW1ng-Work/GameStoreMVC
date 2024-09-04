@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Web.GameStoreMVC.Data;
+using Web.GameStoreMVC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<GameStoreDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreDbConnectionString")));
+
+builder.Services.AddScoped<IGameRepository, GameRepository>();
 
 var app = builder.Build();
 
