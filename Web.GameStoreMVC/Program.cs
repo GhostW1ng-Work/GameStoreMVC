@@ -11,6 +11,7 @@ builder.Services.AddDbContext<GameStoreDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreDbConnectionString")));
 
 builder.Services.AddScoped<IGameRepository, GameRepository>();
+builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 
 var app = builder.Build();
 

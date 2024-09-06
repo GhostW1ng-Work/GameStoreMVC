@@ -1,0 +1,44 @@
+﻿@model List<Web.GameStoreMVC.Models.Domain.Genre>
+
+<div class="bg-secondary bg-opacity-10 py-2">
+	<div class="container">
+		<h1>Все жанры</h1>
+	</div>
+</div>
+
+
+<div class="container mt-3">
+	@if (Model != null && Model.Any())
+	{
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var genre in Model)
+				{
+					<tr>
+						<td>@genre.Id</td>
+						<td>@genre.Name</td>
+						<td>
+							<a asp-area=""
+							   asp-controller="AdminGenre"
+							   asp-action="Edit"
+							   asp-route-id="@genre.Id"
+							   class="btn btn-primary">
+								Edit
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	else
+	{
+		<p>Жанров не найдено!</p>
+	}
+</div>
