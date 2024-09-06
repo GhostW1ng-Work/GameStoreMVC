@@ -20,10 +20,19 @@ namespace Web.GameStoreMVC.Repositories
 			return game;
 		}
 
-		public Task<Game?> DeleteAsync(Guid id)
+		public async Task<Game?> DeleteAsync(Guid id)
 		{
-			throw new NotImplementedException();
-		}
+			var existingGame = await _context.Games.FindAsync(id);
+
+            if (existingGame != null)
+            {
+				_context.Games.Remove(existingGame);
+				await _context.SaveChangesAsync();
+				return existingGame;
+            }
+
+			return null;
+        }
 
 		public async Task<IEnumerable<Game>> GetAllAsync()
 		{
@@ -35,9 +44,24 @@ namespace Web.GameStoreMVC.Repositories
 			return await _context.Games.FirstOrDefaultAsync(x => x.Id == id);
 		}
 
-		public Task<Game?> UpdateAsync(Game game)
+		public async Task<Game?> UpdateAsync(Game game)
 		{
-			throw new NotImplementedException();
+			var existingGame = await _context.Games.FirstOrDefaultAsync(x => x.Id == game.Id);
+
+			if(existingGame != null)
+			{
+				existingGame.Name = game.Name;
+				existingGame.Description = game.Description;
+				existingGame.SystemRequirements = game.SystemRequirements;
+				existingGame.Developer = game.Developer;
+				existingGame.Price = game.Price;
+				existingGame.YearOfRelease = game.YearOfRelease;
+
+				await _context.SaveChangesAsync();
+				return existingGame;
+			}
+
+			return null;
 		}
 	}
 }

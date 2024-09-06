@@ -25,8 +25,26 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="AdminGames"
+                                       asp-action="List">Все игры</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="AdminGames"
+                                       asp-action="Add">Добавить игру</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
+
             </div>
         </nav>
     </header>

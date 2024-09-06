@@ -22,6 +22,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5HYW1lc1xBZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Web/GameStoreMVC/Web.GameStoreMVC/Views/AdminGames/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5HYW1lc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Web/GameStoreMVC/Web.GameStoreMVC/Views/AdminGames/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5HYW1lc1xMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Web/GameStoreMVC/Web.GameStoreMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

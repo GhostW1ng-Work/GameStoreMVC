@@ -4,7 +4,6 @@ namespace Web.GameStoreMVC.Models.ViewModels
 {
 	public class AdminGameAddRequest
 	{
-		public Guid Id { get; set; }
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public string SystemRequirements { get; set; }
