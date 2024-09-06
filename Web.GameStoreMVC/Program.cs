@@ -12,6 +12,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreDbConne
 
 builder.Services.AddScoped<IGameRepository, GameRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
 
 var app = builder.Build();
 
