@@ -1,8 +1,8 @@
-﻿@model List<Web.GameStoreMVC.Models.Domain.Language>
+﻿@model List<Web.GameStoreMVC.Models.Domain.Platform>
 
 <div class="bg-secondary bg-opacity-10 py-2">
 	<div class="container">
-		<h1>Все языки</h1>
+		<h1>Все платформы</h1>
 	</div>
 </div>
 
@@ -18,16 +18,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach (var language in Model)
+				@foreach (var platform in Model)
 				{
 					<tr>
-						<td>@language.Id</td>
-						<td>@language.Name</td>
+						<td>@platform.Id</td>
+						<td>@platform.Name</td>
 						<td>
 							<a asp-area=""
-							   asp-controller="AdminLanguage"
+							   asp-controller="AdminPlatforms"
 							   asp-action="Edit"
-							   asp-route-id="@language.Id"
+							   asp-route-id="@platform.Id"
 							   class="btn btn-primary">
 								Редактировать
 							</a>
@@ -39,6 +39,6 @@
 	}
 	else
 	{
-		<p>Языки не найдены!</p>
+		<p>Платформы не найдены!</p>
 	}
 </div>

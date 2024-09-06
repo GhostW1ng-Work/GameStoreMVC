@@ -30,6 +30,7 @@ namespace Web.GameStoreMVC.Repositories
                 await _context.SaveChangesAsync();
                 return existingLanguage;
             }
+
             return null;
         }
 
@@ -57,8 +58,9 @@ namespace Web.GameStoreMVC.Repositories
                 existingLanguage.Name = language.Name;
 
                 await _context.SaveChangesAsync();
-                return language;
+                return existingLanguage;
             }
+
             return null;
         }
     }
