@@ -11,8 +11,8 @@ namespace Web.GameStoreMVC.Models.ViewModels
 		public decimal Price { get; set; }
 		public DateOnly YearOfRelease { get; set; }
 		public IEnumerable<SelectListItem> Languages { get; set; }
-		public ICollection<SelectListItem> Platforms { get; set; }
-		public ICollection<SelectListItem> Genres { get; set; }
+		public IEnumerable<SelectListItem> Platforms { get; set; }
+		public IEnumerable<SelectListItem> Genres { get; set; }
 		public string[] SelectedLanguages { get; set; } = Array.Empty<string>();
 		public string[] SelectedPlatforms { get; set; } = Array.Empty<string>();
 		public string[] SelectedGenres { get; set; } = Array.Empty<string>();

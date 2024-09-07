@@ -27,6 +27,14 @@
 						<td>@game.Price руб.</td>
 						<td>@game.YearOfRelease</td>
 						<td>
+							<div>
+								@foreach (var genre in game.Genres)
+								{
+									<span class="badge bg-secondary">@genre.Name</span>
+								}
+							</div>
+						</td>
+						<td>
 							<a asp-area=""
 							asp-controller="AdminGames"
 							asp-action="Edit"
