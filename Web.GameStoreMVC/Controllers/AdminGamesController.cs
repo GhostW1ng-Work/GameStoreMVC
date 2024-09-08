@@ -97,7 +97,7 @@ namespace Web.GameStoreMVC.Controllers
 			game.Platforms = selectedPlatforms;
 
 			await _gameRepository.AddAsync(game);
-			return RedirectToAction(nameof(Add));
+			return RedirectToAction(nameof(List));
 		}
 
 		[HttpGet]
