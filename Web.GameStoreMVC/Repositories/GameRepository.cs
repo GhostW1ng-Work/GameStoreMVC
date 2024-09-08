@@ -64,6 +64,7 @@ namespace Web.GameStoreMVC.Repositories
 			{
 				existingGame.Name = game.Name;
 				existingGame.Description = game.Description;
+				existingGame.ShortDescription = game.ShortDescription;
 				existingGame.SystemRequirements = game.SystemRequirements;
 				existingGame.Developer = game.Developer;
 				existingGame.Price = game.Price;

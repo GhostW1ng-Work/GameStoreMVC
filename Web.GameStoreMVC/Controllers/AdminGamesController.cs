@@ -48,6 +48,7 @@ namespace Web.GameStoreMVC.Controllers
 			{
 				Name = adminGameAddRequest.Name,
 				Description = adminGameAddRequest.Description,
+				ShortDescription = adminGameAddRequest.ShortDescription,
 				SystemRequirements = adminGameAddRequest.SystemRequirements,
 				Developer = adminGameAddRequest.Developer,
 				Price = adminGameAddRequest.Price,
@@ -122,6 +123,7 @@ namespace Web.GameStoreMVC.Controllers
 					Id = game.Id,
 					Name = game.Name,
 					Description = game.Description,
+					ShortDescription = game.ShortDescription,
 					SystemRequirements = game.SystemRequirements,
 					Developer = game.Developer,
 					Price = game.Price,
@@ -163,6 +165,7 @@ namespace Web.GameStoreMVC.Controllers
 				Id = adminEditGameRequest.Id,
 				Name = adminEditGameRequest.Name,
 				Description = adminEditGameRequest.Description,
+				ShortDescription = adminEditGameRequest.ShortDescription,
 				SystemRequirements = adminEditGameRequest.SystemRequirements,
 				Developer = adminEditGameRequest.Developer,
 				Price = adminEditGameRequest.Price,
