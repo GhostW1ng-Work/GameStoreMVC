@@ -16,6 +16,9 @@
 					<th>Название</th>
 					<th>Цена</th>
 					<th>Год выпуска</th>
+					<th>Жанры</th>
+					<th>Языки</th>
+					<th>Платформы</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,6 +34,22 @@
 								@foreach (var genre in game.Genres)
 								{
 									<span class="badge bg-secondary">@genre.Name</span>
+								}
+							</div>
+						</td>
+						<td>
+							<div>
+								@foreach (var language in game.Languages)
+								{
+									<span class="badge bg-secondary">@language.Name</span>
+								}
+							</div>
+						</td>
+						<td>
+							<div>
+								@foreach (var platform in game.Platforms)
+								{
+									<span class="badge bg-secondary">@platform.Name</span>
 								}
 							</div>
 						</td>

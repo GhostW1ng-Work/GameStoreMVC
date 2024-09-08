@@ -36,17 +36,29 @@ namespace Web.GameStoreMVC.Repositories
 
 		public async Task<IEnumerable<Game>> GetAllAsync()
 		{
-			return await _context.Games.Include(x => x.Genres).ToListAsync();
+			return await _context.Games
+				.Include(x => x.Genres)
+				.Include(x => x.Languages)
+				.Include(x => x.Platforms)
+				.ToListAsync();
 		}
 
 		public async Task<Game?> GetAsync(Guid id)
 		{
-			return await _context.Games.Include(x => x.Genres).FirstOrDefaultAsync(x => x.Id == id);
+			return await _context.Games
+				.Include(x => x.Genres)
+				.Include(x => x.Languages)
+				.Include(x => x.Platforms)
+				.FirstOrDefaultAsync(x => x.Id == id);
 		}
 
 		public async Task<Game?> UpdateAsync(Game game)
 		{
-			var existingGame = await _context.Games.Include(x => x.Genres).FirstOrDefaultAsync(x => x.Id == game.Id);
+			var existingGame = await _context.Games
+				.Include(x => x.Genres)
+				.Include(x => x.Languages)
+				.Include(x => x.Platforms)
+				.FirstOrDefaultAsync(x => x.Id == game.Id);
 
 			if(existingGame != null)
 			{
@@ -57,6 +69,8 @@ namespace Web.GameStoreMVC.Repositories
 				existingGame.Price = game.Price;
 				existingGame.YearOfRelease = game.YearOfRelease;
 				existingGame.Genres = game.Genres;
+				existingGame.Languages = game.Languages;
+				existingGame.Platforms = game.Platforms;
 
 				await _context.SaveChangesAsync();
 				return existingGame;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Web.GameStoreMVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ba8c01d12173e6828c07bf41bfcaa8e20e242d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc950542434ef5276537fb565b264252a509c8ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("Web.GameStoreMVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Web.GameStoreMVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

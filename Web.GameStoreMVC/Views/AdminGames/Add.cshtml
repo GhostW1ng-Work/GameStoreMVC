@@ -47,6 +47,22 @@
 		</div>
 
 		<div class="mb-3">
+			<label class="form-label">Языки</label>
+			<select class="form-select"
+					asp-items="@Model.Languages"
+					asp-for="SelectedLanguages">
+			</select>
+		</div>
+
+		<div class="mb-3">
+			<label class="form-label">Платформы</label>
+			<select class="form-select"
+					asp-items="@Model.Platforms"
+					asp-for="SelectedPlatforms">
+			</select>
+		</div>
+
+		<div class="mb-3">
 			<button type="submit" class="btn btn-dark">Добавить</button>
 		</div>
 	</form>
