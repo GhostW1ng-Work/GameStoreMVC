@@ -22,7 +22,7 @@
 
 			<div class="mb-3">
 				<label class="form-label">Описание</label>
-				<input type="text" id="description" class="form-control" asp-for="Description" />
+				<textarea class="form-control" id="description" asp-for="Description"></textarea>
 			</div>
 
 			<div class="mb-3">
@@ -106,7 +106,7 @@
 
 @section Scripts {
 	<script>
-		var editor = new FroalaEditor('#content', {
+		var editor = new FroalaEditor('#description', {
 			imageUploadUrl: '/api/images'
 		});
 
