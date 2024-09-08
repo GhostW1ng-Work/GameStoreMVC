@@ -51,7 +51,8 @@ namespace Web.GameStoreMVC.Controllers
 				SystemRequirements = adminGameAddRequest.SystemRequirements,
 				Developer = adminGameAddRequest.Developer,
 				Price = adminGameAddRequest.Price,
-				YearOfRelease = adminGameAddRequest.YearOfRelease
+				YearOfRelease = adminGameAddRequest.YearOfRelease,
+				ImageUrl = adminGameAddRequest.ImageUrl
 			};
 
 			var selectedGenres = new List<Genre>();
@@ -125,6 +126,7 @@ namespace Web.GameStoreMVC.Controllers
 					Developer = game.Developer,
 					Price = game.Price,
 					YearOfRelease = game.YearOfRelease,
+					ImageUrl = game.ImageUrl,
 					Genres = genres.Select(x => new SelectListItem
 					{
 						Text = x.Name,
@@ -164,7 +166,8 @@ namespace Web.GameStoreMVC.Controllers
 				SystemRequirements = adminEditGameRequest.SystemRequirements,
 				Developer = adminEditGameRequest.Developer,
 				Price = adminEditGameRequest.Price,
-				YearOfRelease = adminEditGameRequest.YearOfRelease
+				YearOfRelease = adminEditGameRequest.YearOfRelease,
+				ImageUrl = adminEditGameRequest.ImageUrl
 			};
 
 			var editedGenres = new List<Genre>();

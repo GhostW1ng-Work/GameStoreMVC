@@ -71,6 +71,7 @@ namespace Web.GameStoreMVC.Repositories
 				existingGame.Genres = game.Genres;
 				existingGame.Languages = game.Languages;
 				existingGame.Platforms = game.Platforms;
+				existingGame.ImageUrl = game.ImageUrl;
 
 				await _context.SaveChangesAsync();
 				return existingGame;
