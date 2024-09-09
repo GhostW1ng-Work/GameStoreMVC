@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Web.GameStoreMVC.Data;
 using Web.GameStoreMVC.Repositories;
@@ -9,6 +10,12 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<GameStoreDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreDbConnectionString")));
+
+builder.Services.AddDbContext<AuthDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreAuthDbConnectionString")));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+	.AddEntityFrameworkStores<AuthDbContext>();
 
 builder.Services.AddScoped<IGameRepository, GameRepository>();
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
@@ -31,6 +38,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
