@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Web.GameStoreMVC.Models.Domain;
 using Web.GameStoreMVC.Models.ViewModels;
 using Web.GameStoreMVC.Repositories;
 
 namespace Web.GameStoreMVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminLanguageController : Controller
     {
         private readonly ILanguageRepository _languageRepository;

@@ -7,7 +7,7 @@
 </div>
 
 <div class="container py-5">
-	@if(Model != null && Model.Any())
+	@if (Model != null && Model.Any())
 	{
 		<table class="table">
 			<thead>
@@ -55,10 +55,10 @@
 						</td>
 						<td>
 							<a asp-area=""
-							asp-controller="AdminGames"
-							asp-action="Edit"
-							asp-route-id="@game.Id"
-							class="btn btn-dark">
+							   asp-controller="AdminGames"
+							   asp-action="Edit"
+							   asp-route-id="@game.Id"
+							   class="btn btn-dark">
 								Редактировать
 							</a>
 						</td>

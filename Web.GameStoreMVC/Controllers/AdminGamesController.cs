@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Web.GameStoreMVC.Models.Domain;
 using Web.GameStoreMVC.Models.ViewModels;
@@ -6,6 +7,7 @@ using Web.GameStoreMVC.Repositories;
 
 namespace Web.GameStoreMVC.Controllers
 {
+	[Authorize(Roles="Admin")]
 	public class AdminGamesController : Controller
 	{
 		private readonly IGameRepository _gameRepository;
