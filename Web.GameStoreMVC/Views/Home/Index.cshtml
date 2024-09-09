@@ -1,3 +1,61 @@
-﻿@{
+﻿@model Web.GameStoreMVC.Models.ViewModels.HomeViewModel
+
+@{
     ViewData["Title"] = "Главная";
 }
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            @if (Model != null && @Model.Games.Any())
+            {
+                foreach (var game in Model.Games)
+                {
+                    <div class="mg-5 bg-light box-shadow p-5">
+                        <img src="@game.ImageUrl"
+                             alt="@game.Name"
+                             class="mb-2 d-block img-fluid" />
+
+                        <h2 class="mb-4">@game.Name</h2>
+                        <p class="mb-4">
+                            @game.ShortDescription
+                        </p>
+
+                        <p class="mb-4">
+                            Год выпуска: @game.YearOfRelease.ToShortDateString()
+                        </p>
+
+                        <p class="mb-4">
+                            @foreach (var genre in game.Genres)
+                            {
+                                <span class="badge bg-secondary px-3">@genre.Name</span>
+                            }
+
+                            @foreach (var platform in game.Platforms)
+                            {
+                                <span class="badge bg-secondary px-3">@platform.Name</span>
+                            }
+
+                            @foreach (var language in game.Languages)
+                            {
+                                <span class="badge bg-secondary px-3">@language.Name</span>
+                            }
+
+                        </p>
+                        <div>
+                        <a class="btn btn-dark"
+                           asp-area=""
+                           asp-controller="Games"
+                           asp-action="Index"
+                           asp-route-urlHandle="@game.Id">Полное описание</a>
+
+                           <span>@game.Price руб</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
