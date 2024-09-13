@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Web.GameStoreMVC.Data;
 using Web.GameStoreMVC.Models.Domain;
 
@@ -49,11 +50,27 @@ namespace Web.GameStoreMVC.Repositories
 				|| x.Developer.Contains(searchQuery));
 			}
 
-			if(!string.IsNullOrWhiteSpace(sortBy))
+			if (!string.IsNullOrWhiteSpace(sortBy))
 			{
 				var isDesc = string.Equals(sortDirection,"Desc", StringComparison.OrdinalIgnoreCase);
 
-				if(string.Equals(sortBy, "Name", StringComparison.OrdinalIgnoreCase))
+				foreach (var genre in _context.Genres)
+				{
+					if (string.Equals(sortBy, genre.Name, StringComparison.OrdinalIgnoreCase))
+					{
+						query = query.Where(x => x.Genres.Contains(genre));
+					}
+				}
+
+				foreach (var platform in _context.Platforms)
+				{
+					if (string.Equals(sortBy, platform.Name, StringComparison.OrdinalIgnoreCase))
+					{
+						query = query.Where(x => x.Platforms.Contains(platform));
+					}
+				}
+
+				if (string.Equals(sortBy, "Name", StringComparison.OrdinalIgnoreCase))
 				{
 					query = isDesc ? query.OrderByDescending(x => x.Name) : query.OrderBy(x => x.Name);
 				}
@@ -79,6 +96,7 @@ namespace Web.GameStoreMVC.Repositories
 
 			var skipResults = (pageNumber - 1) * pageSize;
 			query = query.Skip(skipResults).Take(pageSize);
+			Console.WriteLine(query.Count());
 
 			return await query
 				.Include(x => x.Genres)
