@@ -96,7 +96,6 @@ namespace Web.GameStoreMVC.Repositories
 
 			var skipResults = (pageNumber - 1) * pageSize;
 			query = query.Skip(skipResults).Take(pageSize);
-			Console.WriteLine(query.Count());
 
 			return await query
 				.Include(x => x.Genres)

@@ -19,9 +19,27 @@ namespace Web.GameStoreMVC.Controllers
         }
 
 		[HttpGet]
-        public async Task<IActionResult> List()
+		public async Task<IActionResult> List(int pageNumber = 1, int pageSize = 3)
 		{
-			var users = await _userRepository.GetAllAsync();
+			var totalRecords = await _userRepository.GetCountAsync() - 1;
+			var totalPages = Math.Ceiling((decimal)totalRecords / pageSize);
+
+			if (pageNumber > totalPages)
+			{
+				pageNumber--;
+			}
+
+			if (pageNumber < 1)
+			{
+				pageNumber++;
+			}
+
+			ViewBag.TotalPages = totalPages;
+			ViewBag.PageSize = pageSize;
+			ViewBag.PageNumber = pageNumber;
+
+			var users = await _userRepository.GetAllAsync(pageNumber:pageNumber, pageSize:pageSize);
+
 			var userViewModel = new UserViewModel();
 			userViewModel.Users = new List<User>();
 

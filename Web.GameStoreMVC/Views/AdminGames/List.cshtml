@@ -1,8 +1,15 @@
 ﻿@model List<Web.GameStoreMVC.Models.Domain.Game>
 
+@{
+	ViewData["Title"] = "Список игр";
+	int nextPage = Convert.ToInt32(ViewBag.PageNumber) + 1;
+	int previousPage = Convert.ToInt32(ViewBag.PageNumber) - 1;
+}
+
+
 <div class="bg-secondary bg-opacity-10 py-2">
 	<div class="container">
-		<h1>Список игр - функционал админа</h1>
+		<h1>Список игр</h1>
 	</div>
 </div>
 
@@ -66,6 +73,35 @@
 				}
 			</tbody>
 		</table>
+
+		<nav aria-label="Page navigation">
+			<ul class="pagination">
+				<li class="page-item">
+					<a class="page-link"
+					   asp-controller="AdminGames"
+					   asp-action="List"
+					   asp-route-pageNumber="@previousPage">Предыдущая</a>
+				</li>
+
+				@for (int i = 1; i <= ViewBag.TotalPages; i++)
+				{
+					<li class="page-item">
+						<a class="page-link"
+						   asp-controller="AdminGames"
+						   asp-action="List"
+						   asp-route-pageNumber="@i"
+						   asp-route-pageSize="@ViewBag.PageSize">@i</a>
+					</li>
+				}
+
+				<li class="page-item">
+					<a class="page-link"
+					   asp-controller="AdminGames"
+					   asp-action="List"
+					   asp-route-pageNumber="@nextPage">Следующая</a>
+				</li>
+			</ul>
+		</nav>
 	}
 	else
 	{

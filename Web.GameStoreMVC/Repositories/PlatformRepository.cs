@@ -34,9 +34,12 @@ namespace Web.GameStoreMVC.Repositories
 			return null;
 		}
 
-		public async Task<IEnumerable<Platform>> GetAllAsync()
+		public async Task<IEnumerable<Platform>> GetAllAsync(int pageNumber = 1, int pageSize = 3)
 		{
-			return await _context.Platforms.ToListAsync();
+			var query = _context.Platforms.AsQueryable();
+			var skipResults = (pageNumber - 1) * pageSize;
+			query = query.Skip(skipResults).Take(pageSize);
+			return await query.ToListAsync();
 		}
 
 		public async Task<Platform?> GetAsync(Guid id)

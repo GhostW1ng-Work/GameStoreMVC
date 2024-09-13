@@ -40,9 +40,26 @@ namespace Web.GameStoreMVC.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> List()
+		public async Task<IActionResult> List(int pageNumber = 1, int pageSize = 3)
 		{
-			var genres = await _genreRepository.GetAllAsync();
+			var totalRecords = await _genreRepository.GetCountAsync();
+			var totalPages = Math.Ceiling((decimal)totalRecords / pageSize);
+
+			if (pageNumber > totalPages)
+			{
+				pageNumber--;
+			}
+
+			if (pageNumber < 1)
+			{
+				pageNumber++;
+			}
+
+			ViewBag.TotalPages = totalPages;
+			ViewBag.PageSize = pageSize;
+			ViewBag.PageNumber = pageNumber;
+
+			var genres = await _genreRepository.GetAllAsync(pageNumber:pageNumber, pageSize:pageSize);
 			return View(genres);
 		}
 
