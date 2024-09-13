@@ -1,61 +1,174 @@
 ﻿@model Web.GameStoreMVC.Models.ViewModels.HomeViewModel
 
 @{
-    ViewData["Title"] = "Главная";
+	ViewData["Title"] = "Главная";
+	int nextPage = Convert.ToInt32(ViewBag.PageNumber) + 1;
+	int previousPage = Convert.ToInt32(ViewBag.PageNumber) - 1;
 }
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-6">
-            @if (Model != null && @Model.Games.Any())
-            {
-                foreach (var game in Model.Games)
-                {
-                    <div class="mg-5 bg-light box-shadow p-5">
-                        <img src="@game.ImageUrl"
-                             alt="@game.Name"
-                             class="mb-2 d-block img-fluid" />
+<form method="get"
+	  asp-controller="Home"
+	  asp-action="Index">
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col col-md-3 d-flex">
+				<input type="text" class="form-control" name="searchQuery" value="@ViewBag.SearchQuery" />
+				<button type="submit" class="btn btn-warning ms-3">Search</button>
+			</div>
+		</div>
+	</div>
+</form>
 
-                        <h2 class="mb-4">@game.Name</h2>
-                        <p class="mb-4">
-                            @game.ShortDescription
-                        </p>
-
-                        <p class="mb-4">
-                            Год выпуска: @game.YearOfRelease.ToShortDateString()
-                        </p>
-
-                        <p class="mb-4">
-                            @foreach (var genre in game.Genres)
-                            {
-                                <span class="badge bg-secondary px-3">@genre.Name</span>
-                            }
-
-                            @foreach (var platform in game.Platforms)
-                            {
-                                <span class="badge bg-secondary px-3">@platform.Name</span>
-                            }
-
-                            @foreach (var language in game.Languages)
-                            {
-                                <span class="badge bg-secondary px-3">@language.Name</span>
-                            }
-
-                        </p>
-                        <div>
-                        <a class="btn btn-dark"
-                           asp-area=""
-                           asp-controller="Games"
-                           asp-action="Index"
-                           asp-route-id="@game.Id">Полное описание</a>
-
-                           <span>@game.Price руб</span>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
+<div class="container mt-3">
+	@if (Model != null && Model.Games.Any())
+	{
+		<table class="table">
+			<thead>
+			<th></th>
+			<th>
+				Название
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="Name"
+						   asp-route-sortDirection="Asc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-up"></i>
+						</a>
+					</span>
+				</span>
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="Name"
+						   asp-route-sortDirection="Desc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-down"></i>
+						</a>
+					</span>
+				</span>
+			</th>
+			<th>Описание
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="ShortDescription"
+						   asp-route-sortDirection="Asc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-up"></i>
+						</a>
+					</span>
+				</span>
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="ShortDescription"
+						   asp-route-sortDirection="Desc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-down"></i>
+						</a>
+					</span>
+				</span>
+			</th>
+			<th>Год выпуска
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="YearOfRelease"
+						   asp-route-sortDirection="Asc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-up"></i>
+						</a>
+					</span>
+				</span>
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="YearOfRelease"
+						   asp-route-sortDirection="Desc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-down"></i>
+						</a>
+					</span>
+				</span>
+			</th>
+			<th>Стоимость
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="Price"
+						   asp-route-sortDirection="Asc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-up"></i>
+						</a>
+					</span>
+				</span>
+				<span>
+					<span>
+						<a class="btn btn-light"
+						   asp-controller="Home"
+						   asp-action="Index"
+						   asp-route-sortBy="Price"
+						   asp-route-sortDirection="Desc"
+						   asp-route-searchQuery="@ViewBag.SearchQuery">
+							<i class="bi bi-arrow-down"></i>
+						</a>
+					</span>
+				</span>
+			</th>
+			</thead>
+			<tbody>
+				@foreach (var game in Model.Games)
+				{
+					<tr>
+						<td>
+							<img src="@game.ImageUrl"
+								 alt="@game.Name"
+								 class="mb-2 d-block img-fluid" />
+						</td>
+						<td>
+							@game.Name
+							<br />
+							<span class="fst-italic">@game.Developer</span>
+							<br />
+							@foreach (var genre in game.Genres)
+							{
+								<span class="badge bg-secondary px-3">
+									@genre.Name
+								</span>
+							}
+						</td>
+						<td>@game.ShortDescription</td>
+						<td>@game.YearOfRelease</td>
+						<td>@game.Price руб.</td>
+						<td>
+							<a class="btn btn-dark"
+							   asp-area=""
+							   asp-controller="Games"
+							   asp-action="Index"
+							   asp-route-id="@game.Id">Полное описание</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	else
+	{
+		<p>Игр не найдено!</p>
+	}
 </div>
-
-

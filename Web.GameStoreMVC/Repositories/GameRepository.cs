@@ -34,9 +34,53 @@ namespace Web.GameStoreMVC.Repositories
 			return null;
         }
 
-		public async Task<IEnumerable<Game>> GetAllAsync()
+		public async Task<IEnumerable<Game>> GetAllAsync(
+			string? searchQuery = null,
+			string? sortBy = null,
+			string? sortDirection = null,
+			int pageSize = 3,
+			int pageNumber = 1)
 		{
-			return await _context.Games
+			var query = _context.Games.AsQueryable();
+
+			if(!string.IsNullOrWhiteSpace(searchQuery))
+			{
+				query = query.Where(x => x.Name.Contains(searchQuery)
+				|| x.Developer.Contains(searchQuery));
+			}
+
+			if(!string.IsNullOrWhiteSpace(sortBy))
+			{
+				var isDesc = string.Equals(sortDirection,"Desc", StringComparison.OrdinalIgnoreCase);
+
+				if(string.Equals(sortBy, "Name", StringComparison.OrdinalIgnoreCase))
+				{
+					query = isDesc ? query.OrderByDescending(x => x.Name) : query.OrderBy(x => x.Name);
+				}
+
+				if (string.Equals(sortBy, "ShortDescription", StringComparison.OrdinalIgnoreCase))
+				{
+					query = isDesc ? query.OrderByDescending(x => x.ShortDescription)
+						: query.OrderBy(x => x.ShortDescription);
+				}
+
+				if (string.Equals(sortBy, "YearOfRelease", StringComparison.OrdinalIgnoreCase))
+				{
+					query = isDesc ? query.OrderByDescending(x => x.YearOfRelease)
+						: query.OrderBy(x => x.YearOfRelease);
+				}
+
+				if (string.Equals(sortBy, "Price", StringComparison.OrdinalIgnoreCase))
+				{
+					query = isDesc ? query.OrderByDescending(x => x.Price)
+						: query.OrderBy(x => x.Price);
+				}
+			}
+
+			var skipResults = (pageNumber - 1) * pageSize;
+			query = query.Skip(skipResults).Take(pageSize);
+
+			return await query
 				.Include(x => x.Genres)
 				.Include(x => x.Languages)
 				.Include(x => x.Platforms)
@@ -50,6 +94,11 @@ namespace Web.GameStoreMVC.Repositories
 				.Include(x => x.Languages)
 				.Include(x => x.Platforms)
 				.FirstOrDefaultAsync(x => x.Id == id);
+		}
+
+		public async Task<int> GetCountAsync()
+		{
+			return await _context.Games.CountAsync(); 
 		}
 
 		public async Task<Game?> UpdateAsync(Game game)

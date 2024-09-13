@@ -27,9 +27,38 @@ namespace Web.GameStoreMVC.Controllers
 			_platformRepository = platformRepository;
 		}
 
-		public async Task<IActionResult> Index()
+		[HttpGet]
+		public async Task<IActionResult> Index(
+			string? searchQuery,
+			string? sortBy,
+			string? sortDirection,
+			int pageSize = 3,
+			int pageNumber = 1)
 		{
-			var games = await _gameRepository.GetAllAsync();
+			var totalRecords = await _gameRepository.GetCountAsync();
+			var totalPages = Math.Ceiling((decimal)totalRecords / pageSize);
+
+			if(pageNumber > totalPages)
+			{
+				pageNumber--;
+			}
+
+			if (pageNumber < 1)
+			{
+				pageNumber++;
+			}
+
+			ViewBag.SearchQuery = searchQuery;
+			ViewBag.SortBy = sortBy;
+			ViewBag.SortDirection = sortDirection;
+			ViewBag.TotalPages = totalPages;
+			ViewBag.PageSize = pageSize;
+			ViewBag.PageNumber = pageNumber;
+
+
+			var games = await _gameRepository.GetAllAsync(searchQuery, sortBy, sortDirection,
+				pageSize,pageNumber);
+
 			var genres = await _genreRepository.GetAllAsync();
 			var languages = await _languageRepository.GetAllAsync();
 			var platforms = await _platformRepository.GetAllAsync();
