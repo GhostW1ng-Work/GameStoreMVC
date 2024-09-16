@@ -10,38 +10,38 @@
 	<form method="post">
 		<div class="mb-3">
 			<label class="form-label">Название</label>
-			<input type="text" class="form-control" id="name" asp-for="Name" />
+			<input type="text" class="form-control" id="name" asp-for="Name" required />
 		</div>
 
 		<div class="mb-3">
 			<label class="form-label">Описание</label>
-			<textarea class="form-control" id="description" asp-for="Description"></textarea>
+			<textarea class="form-control" id="description" asp-for="Description" required></textarea>
 		</div>
 
 		<div class="mb-3">
 			<label class="form-label">Короткое описание</label>
-			<input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription" />
+			<input type="text" class="form-control" id="shortDescription" asp-for="ShortDescription" required />
 		</div>
 
 
 		<div class="mb-3">
 			<label class="form-label">Системные требования</label>
-			<input type="text" class="form-control" id="systemRequirements" asp-for="SystemRequirements" />
+			<input type="text" class="form-control" id="systemRequirements" asp-for="SystemRequirements" required />
 		</div>
 
 		<div class="mb-3">
 			<label class="form-label">Разработчик</label>
-			<input type="text" class="form-control" id="developer" asp-for="Developer" />
+			<input type="text" class="form-control" id="developer" asp-for="Developer" required />
 		</div>
 
 		<div class="mb-3">
 			<label class="form-label">Цена</label>
-			<input type="number" class="form-control" id="price" asp-for="Price" />
+			<input type="number" class="form-control" id="price" asp-for="Price" required />
 		</div>
 
 		<div class="mb-3">
 			<label class="form-label">Год выпуска</label>
-			<input type="date" class="form-control" id="yearOfRelease" asp-for="YearOfRelease" />
+			<input type="date" class="form-control" id="yearOfRelease" asp-for="YearOfRelease" required />
 		</div>
 
 		<div class="mb-3">
@@ -52,7 +52,7 @@
 
 		<div class="mb-3">
 			<label class="form-label">Url картинки</label>
-			<input type="text" class="form-control" id="imageUrl" asp-for="ImageUrl" />
+			<input type="text" class="form-control" id="imageUrl" asp-for="ImageUrl" required />
 		</div>
 
 		<div class="mb-3">

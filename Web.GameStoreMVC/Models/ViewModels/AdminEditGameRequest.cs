@@ -1,18 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace Web.GameStoreMVC.Models.ViewModels
 {
     public class AdminEditGameRequest
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string ShortDescription { get; set; }
-        public string SystemRequirements { get; set; }
-        public string Developer { get; set; }
-        public decimal Price { get; set; }
-        public DateOnly YearOfRelease { get; set; }
-        public string ImageUrl {  get; set; }
+		[Required]
+		public string Name { get; set; }
+		[Required]
+		public string Description { get; set; }
+		[Required]
+		public string ShortDescription { get; set; }
+		[Required]
+		public string SystemRequirements { get; set; }
+		[Required]
+		public string Developer { get; set; }
+		[Required]
+		public decimal Price { get; set; }
+		[Required]
+		public DateOnly YearOfRelease { get; set; }
+		[Required]
+		public string ImageUrl {  get; set; }
         public IEnumerable<SelectListItem> Languages { get; set; }
         public IEnumerable<SelectListItem> Platforms { get; set; }
         public IEnumerable<SelectListItem> Genres { get; set; }
