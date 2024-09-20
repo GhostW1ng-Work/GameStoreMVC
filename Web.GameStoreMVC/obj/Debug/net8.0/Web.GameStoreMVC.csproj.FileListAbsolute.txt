@@ -47,7 +47,6 @@ C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\System.Security.Permissions.dll
-C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\System.Text.Json.dll
 C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Web\GameStoreMVC\Web.GameStoreMVC\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll

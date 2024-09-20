@@ -58,7 +58,7 @@ namespace Web.GameStoreMVC.Controllers
 					await _emailSender.SendEmailAsync(
 						email,
 						"Подтверждение вашей учетной записи",
-						$"Пожалуйста, подтвердите вашу учетную запись, кликнув <a href='{callbackUrl}'>здесь</a>.") ;
+						$"Пожалуйста, подтвердите вашу учетную запись, кликнув <a href='{callbackUrl}'>здесь</a>.");
 
 					var roleIdentityResult = await _userManager.AddToRoleAsync(user, "User");
 
@@ -81,7 +81,8 @@ namespace Web.GameStoreMVC.Controllers
 		[HttpGet]
 		public IActionResult Login(string returnUrl)
 		{
-			var model = new LoginViewModel { ReturnUrl = returnUrl };
+			var model = new LoginViewModel { ReturnUrl = returnUrl};
+
 
 			return View(model);
 		}
@@ -91,6 +92,14 @@ namespace Web.GameStoreMVC.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+				var user = await _userManager.FindByNameAsync(loginViewModel.Username);
+
+				if(!await _userManager.IsEmailConfirmedAsync(user))
+				{
+					ModelState.AddModelError("", "Подтвердите email");
+					return View(loginViewModel);
+				}
+
 				var signInResult = await _signInManager
 					.PasswordSignInAsync(loginViewModel.Username, loginViewModel.Password, false, false);
 
@@ -103,10 +112,16 @@ namespace Web.GameStoreMVC.Controllers
 
 					return RedirectToAction("Index", "Home");
 				}
+				else
+				{
+					ModelState.AddModelError("", "Неправильный логин или пароль");
+					return View(loginViewModel);
+				}
 			}
 
 			return View();
 		}
+
 
 		[HttpGet]
 		public async Task<IActionResult> Logout()

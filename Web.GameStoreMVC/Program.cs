@@ -17,7 +17,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("GameStoreAuthDbConnectionString")));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
-options.SignIn.RequireConfirmedAccount = true)
+options.SignIn.RequireConfirmedAccount = false)
 	.AddEntityFrameworkStores<AuthDbContext>()
 	.AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>(TokenOptions.DefaultProvider);
 

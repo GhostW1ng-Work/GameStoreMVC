@@ -23,8 +23,18 @@
 					<button type="submit" class="btn btn-dark">Login</button>
 				</div>
 
-				<input type="hidden" asp-for="ReturnUrl" />
+				<input type="hidden" asp-for="ReturnUrl"/>
+				@if (!ViewData.ModelState.IsValid)
+				{
+					<div class="text-danger">
+						@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+						{
+							<p>@error.ErrorMessage</p>
+						}
+					</div>
+				}
 			</form>
+
 		</div>
 	</div>
 </div>
